@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
+import com.openclassrooms.entrevoisins.events.TabEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
@@ -26,6 +27,7 @@ public class NeighbourFragment extends Fragment {
 
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
+    private List<Neighbour> mFavNeighbours;
     private RecyclerView mRecyclerView;
 
 
@@ -90,4 +92,22 @@ public class NeighbourFragment extends Fragment {
         mApiService.deleteNeighbour(event.neighbour);
         initList();
     }
+
+
+    /**TODO: TabEvent Triggered
+     * Fired if the user clicks on favtab button
+     * @param event
+     */
+    @Subscribe
+    public void selectedTab(TabEvent event) {
+
+        if(event.selectedTab == 0) {
+            mNeighbours = mApiService.getNeighbours();
+            mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
+        }else{
+            mFavNeighbours = mApiService.getFavNeighbours();
+            mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mFavNeighbours));
+        }
+    }
+
 }
