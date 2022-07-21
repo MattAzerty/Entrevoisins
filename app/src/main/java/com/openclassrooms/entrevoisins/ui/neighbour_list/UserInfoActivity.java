@@ -79,12 +79,12 @@ public class UserInfoActivity extends AppCompatActivity {
 
                    if (nb.getFav()==true){//unfav
                        nb.setFav(false);
-                       mApiService.editFavNeighbour(nb);
+                       mApiService.editNeighbour(nb);
                        mFav.setImageResource(R.drawable.ic_star_border_white_24dp);
 
                    }else{//fav
                     nb.setFav(true);
-                    mApiService.editFavNeighbour(nb);
+                    mApiService.editNeighbour(nb);
                     mFav.setImageResource(R.drawable.ic_star_white_24dp);
                    }
 

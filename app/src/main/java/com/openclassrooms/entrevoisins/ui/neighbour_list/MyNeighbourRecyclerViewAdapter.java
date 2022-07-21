@@ -52,7 +52,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
             }
         });
-//TODO: Listen then lauch UserInfoActivity
+//TODO: Listen items on list then launch UserInfoActivity if click detected
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

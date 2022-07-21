@@ -32,7 +32,7 @@ public interface NeighbourApiService {
      * Edit a neighbour
      * @param neighbour
      */
-    void editFavNeighbour(Neighbour neighbour);
+    void editNeighbour(Neighbour neighbour);
 
     /**
      * Create a neighbour
