@@ -43,11 +43,11 @@ public class ListNeighbourActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
         mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        //TODO: AJOUT2
+        //TODO: Listen action on Tab
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                //Detection fav or not
+                //Detection fav or not selected
                 int mSelectedTab = mTabLayout.getSelectedTabPosition();
                 String s = Integer.toString(mSelectedTab);
                 Log.i("FavActivitySelected?",s);
@@ -66,7 +66,6 @@ public class ListNeighbourActivity extends AppCompatActivity {
 
             }
         });
-//Fin AJOUT2
 
     }
 

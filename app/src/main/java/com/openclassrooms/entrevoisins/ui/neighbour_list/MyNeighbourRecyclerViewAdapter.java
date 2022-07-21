@@ -52,7 +52,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
             }
         });
-//TODO: AJOUT1 début
+//TODO: Listen then lauch UserInfoActivity
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +62,6 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 v.getContext().startActivity(UserInfoIntent);
             }
         });
-        //AJOUT1 fin
     }
 
     @Override
