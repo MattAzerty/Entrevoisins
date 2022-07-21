@@ -22,5 +22,6 @@ public class DeleteViewAction implements ViewAction {
         View button = view.findViewById(R.id.item_list_delete_button);
         // Maybe check for null
         button.performClick();
+
     }
 }

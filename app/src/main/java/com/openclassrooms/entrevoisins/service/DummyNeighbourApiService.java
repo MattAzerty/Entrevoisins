@@ -27,10 +27,8 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     @Override
     public List<Neighbour> getFavNeighbours() {
 
-        List<Neighbour> favNeihbours = neighbours.stream()
+        return neighbours.stream()
                 .filter(p -> p.getFav() == true).collect(Collectors.toList());
-
-        return favNeihbours;
     }
 
     /**
@@ -46,7 +44,7 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
      * {@inheritDoc}
      */
     @Override
-    public void editFavNeighbour(Neighbour neighbour) {
+    public void editNeighbour(Neighbour neighbour) {
         neighbours.set(neighbours.indexOf(neighbour),neighbour);
     }
 
