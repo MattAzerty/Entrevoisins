@@ -61,6 +61,7 @@ public class UserInfoActivity extends AppCompatActivity {
         mNeighbourPhone.setText(nb.getPhoneNumber());
         mNeighbourSocial.setText("www.facebook.fr/" + nb.getName().toLowerCase());
         mAboutMe.setText(nb.getAboutMe());
+
         //Set the Fav button state
         if(nb.getFav()==true){
             mFav.setImageResource(R.drawable.ic_star_white_24dp);
@@ -94,8 +95,8 @@ public class UserInfoActivity extends AppCompatActivity {
            mBack.setOnClickListener(new View.OnClickListener() {
               @Override
                public void onClick(View view) {
-                  //TODO: Back Button pressed
-                   onBackPressed();
+                  //TODO: Back Button pressed (finish)
+                  finish();
 
                }
            });

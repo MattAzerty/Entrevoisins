@@ -2,6 +2,7 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +23,8 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
+import butterknife.BindView;
+
 
 public class NeighbourFragment extends Fragment {
 
@@ -29,6 +32,7 @@ public class NeighbourFragment extends Fragment {
     private List<Neighbour> mNeighbours;
     private List<Neighbour> mFavNeighbours;
     private RecyclerView mRecyclerView;
+    private TabLayout mTabLayout;
 
 
     /**
@@ -58,10 +62,13 @@ public class NeighbourFragment extends Fragment {
     }
 
     /**
-     * Init the List of neighbours
+     * Init the List of neighbours //TODO: with Tab behaviour
      */
     private void initList() {
-        mNeighbours = mApiService.getNeighbours();
+        mTabLayout = getActivity().findViewById(R.id.tabs);
+        int mSelectedTab = mTabLayout.getSelectedTabPosition();
+        if (mSelectedTab == 1) {mNeighbours = mApiService.getFavNeighbours();
+        }else {mNeighbours = mApiService.getNeighbours();}
         mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
     }
 
@@ -103,10 +110,10 @@ public class NeighbourFragment extends Fragment {
 
         if(event.selectedTab == 0) {
             mNeighbours = mApiService.getNeighbours();
-            mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
+            initList();
         }else{
             mFavNeighbours = mApiService.getFavNeighbours();
-            mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mFavNeighbours));
+            initList();
         }
     }
 

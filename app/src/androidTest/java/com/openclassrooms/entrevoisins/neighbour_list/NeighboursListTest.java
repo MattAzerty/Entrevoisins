@@ -59,7 +59,6 @@ public class NeighboursListTest {
 
     @Before
     public void setUp() {
-        Intents.init();// to be able to call intended methods later
         mActivity = mActivityRule.getActivity();
         assertThat(mActivity, notNullValue());
     }
@@ -92,12 +91,50 @@ public class NeighboursListTest {
      * When we click on a list item the activity UserInfoActivity is shown
      */
     @Test
-    public void myNeighboursList_ItemIsClickedOn() {
+    public void myNeighboursList_UserInfoActivity_Started() {
+        Intents.init();
 //Click on the first list item (Caroline)
         onView(withId(R.id.list_neighbours))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 //UserInfoActivity started ?
         intended(hasComponent(UserInfoActivity.class.getName()));
+        Intents.release();
+    }
+
+    @Test
+    public void myNeighboursList_TextView_Match() {
+//Click on the first list item (Caroline)
+        onView(withId(R.id.list_neighbours))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+
+//Testing if user name is shown
+        onView(withId(R.id.user_info_activity_textview_name)).check(matches((withText("Caroline"))));
+
+    }
+
+    @Test
+    public void myNeighboursList_NoFav() {
+//Go on favorites tab
+
+        ViewInteraction tabView = onView(
+                allOf(withContentDescription("Favorites"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.tabs),
+                                        0),
+                                1),
+                        isDisplayed()));
+        tabView.perform(click());
+
+        onView(withId(R.id.list_neighbours)).check(withItemCount(0));
+
+    }
+
+    @Test
+    public void myNeighboursList_Fav() {
+//Click on the first list item (Caroline)
+        onView(withId(R.id.list_neighbours))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
 //Testing if user name is shown
         onView(withId(R.id.user_info_activity_textview_name)).check(matches((withText("Caroline"))));
@@ -117,13 +154,6 @@ public class NeighboursListTest {
                                 1),
                         isDisplayed()));
         tabView.perform(click());
-
-        /* wait 1.5 seconds
-        try {
-            Thread.sleep(1500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
 
         onView(withId(R.id.list_neighbours)).check(withItemCount(1));
 

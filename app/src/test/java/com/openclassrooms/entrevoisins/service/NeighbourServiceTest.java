@@ -56,7 +56,11 @@ public class NeighbourServiceTest {
         service.editNeighbour(neighbourToEdit);
         assertTrue(service.getNeighbours().get(0)==neighbourToEdit);
         assertEquals(1, service.getFavNeighbours().size());
-
+        //Edit user with Unfav
+        neighbourToEdit.setFav(false);
+        service.editNeighbour(neighbourToEdit);
+        assertTrue(service.getNeighbours().get(0)==neighbourToEdit);
+        assertEquals(0, service.getFavNeighbours().size());
     }
 
 }
