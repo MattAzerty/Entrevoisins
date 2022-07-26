@@ -49,8 +49,6 @@ public class ListNeighbourActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 //Detection fav or not selected
                 int mSelectedTab = mTabLayout.getSelectedTabPosition();
-                String s = Integer.toString(mSelectedTab);
-                Log.i("FavActivitySelected?",s);
                 EventBus.getDefault().post(new TabEvent(mSelectedTab));
 
 

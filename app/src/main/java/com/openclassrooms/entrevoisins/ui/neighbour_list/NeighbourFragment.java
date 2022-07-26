@@ -30,7 +30,6 @@ public class NeighbourFragment extends Fragment {
 
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
-    private List<Neighbour> mFavNeighbours;
     private RecyclerView mRecyclerView;
     private TabLayout mTabLayout;
 
@@ -107,14 +106,8 @@ public class NeighbourFragment extends Fragment {
      */
     @Subscribe
     public void selectedTab(TabEvent event) {
+            initList();
 
-        if(event.selectedTab == 0) {
-            mNeighbours = mApiService.getNeighbours();
-            initList();
-        }else{
-            mFavNeighbours = mApiService.getFavNeighbours();
-            initList();
-        }
     }
 
 }
