@@ -6,4 +6,5 @@
 ## 1 - Download the app : https://downgit.github.io/#/home?url=https://github.com/MattAzerty/Entrevoisins
 ## 2 - User Android studio to open the folder/project "Entrevoisins" (https://developer.android.com/studio)
 ## 3 - Run your app: https://developer.android.com/training/basics/firstapp/running-app
+=======
 
